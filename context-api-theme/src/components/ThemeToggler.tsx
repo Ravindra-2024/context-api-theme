@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "../context/ThemeContext"; // Import the custom hook
+import { useTheme } from "../context/useTheme";
 
 /**
  * A component that provides a button to toggle the application theme.

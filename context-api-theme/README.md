@@ -1,69 +1,63 @@
-# React + TypeScript + Vite
+# context-api-theme
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Testing
 
-Currently, two official plugins are available:
+This project uses [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for unit and integration tests.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Installed Testing Packages
 
-## Expanding the ESLint configuration
+- `vitest` — Test runner
+- `@testing-library/react` — React component testing utilities
+- `@testing-library/jest-dom` — Custom DOM matchers for assertions
+- `@testing-library/user-event` — Simulates user interactions
+- `jsdom` — JavaScript implementation of the DOM for testing
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### How to Run Tests
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Or, for watch mode:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npx vitest --watch
 ```
+
+### How to Run Coverage
+
+To generate a coverage report, run:
+
+```bash
+npx vitest run --coverage
+```
+
+The coverage report will be output in the `coverage/` directory. Open `coverage/index.html` in your browser to view a detailed, interactive report.
+
+### Test Cases Checklist
+
+#### ThemeProvider & useTheme
+- [x] Provides default theme (light)
+- [x] Reads theme from localStorage
+- [x] Saves theme to localStorage on change
+- [x] Applies correct class to document body
+- [x] useTheme returns theme and toggleTheme
+- [x] useTheme throws error if used outside provider
+
+#### ThemeToggler
+- [x] Renders toggle button
+- [x] Toggles theme on click
+- [x] Reflects current theme in button text
+
+#### ThemedContent
+- [x] Renders with correct background and text color for light theme
+- [x] Renders with correct background and text color for dark theme
+- [x] Displays current theme text
+
+---
+
+## Creating/Running Tests
+
+Test files are placed alongside components or in a `__tests__` folder. Use `.test.tsx` or `.test.ts` extensions.
+
+---

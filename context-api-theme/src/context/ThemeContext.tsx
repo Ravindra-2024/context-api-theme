@@ -1,11 +1,5 @@
-import React, {
-  createContext,
-  useState,
-  useContext,
-  useCallback,
-  ReactNode, // Import ReactNode for children prop type
-  useEffect,
-} from "react";
+import React, { createContext, useState, useCallback, useEffect } from "react";
+import type { ReactNode } from "react";
 
 // 1. Define the shape of the context value
 // This interface describes what consumers will receive from the context.
@@ -19,17 +13,12 @@ interface ThemeContextType {
 // This default value is used if a component tries to consume the context
 // without a Provider above it in the tree.
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export { ThemeContext };
 
 // 3. Create a custom hook for consuming the context
 // This hook makes it easier and safer to use the context,
 // ensuring it's always used within a ThemeProvider.
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error("useTheme must be used within a ThemeProvider");
-  }
-  return context;
-};
+// (Moved useTheme to useTheme.ts)
 
 // 4. Create the ThemeProvider component
 // This component will manage the actual theme state and provide it to its children.

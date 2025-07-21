@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "../context/ThemeContext"; // Import the custom hook
+import { useTheme } from "../context/useTheme"; // Import the custom hook
 
 /**
  * A component that displays content with styling based on the current theme.
